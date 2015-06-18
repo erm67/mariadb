@@ -14,8 +14,8 @@
 # customize your systemd unit file for mysqld/mariadb according to the
 # instructions in http://fedoraproject.org/wiki/Systemd
 [mysqld]
-datadir=/srv/data/mysql
-log-bin=/srv/data/mysql/erm67.lan
+datadir=/var/lib/mysql
+log-bin=/var/lib/mysql/erm67.lan
 socket=/var/lib/mysql/mysql.sock
 log-error=/var/log/mariadb/mariadb.log
 pid-file=/var/run/mariadb/mariadb.pid
@@ -37,9 +37,9 @@ binlog_format = 'MIXED'
 
 # Uncomment the following if you are using InnoDB tables
 default_storage_engine         = InnoDB
-innodb_data_home_dir = /srv/data/mysql
+innodb_data_home_dir = /var/lib/mysql
 innodb_data_file_path = ibdata1:10M:autoextend
-innodb_log_group_home_dir = /srv/data/mysql
+innodb_log_group_home_dir = /var/lib/mysql
 # You can set .._buffer_pool_size up to 50 - 80 %
 # of RAM but beware of setting memory usage too high
 innodb_buffer_pool_size = 16M
