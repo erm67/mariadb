@@ -7,8 +7,10 @@ if [ "${1:0:1}" = '-' ]; then
 fi
 
 if [ "$1" = 'mysqld' ]; then
-	if [  -f /var/run/mariadb/mysql.sock ]; then
-        	rm /var/run/mariadb/mysql.sock
+	# read DATADIR from the MySQL config
+	SOCKET="$("$@" --verbose --help 2>/dev/null | awk '$1 == "socket" { print $2; exit }')"
+	if [  -f ${SOCKET} ]; then
+        	rm ${SOCKET}
 	fi
 	# read DATADIR from the MySQL config
 	DATADIR="$("$@" --verbose --help 2>/dev/null | awk '$1 == "datadir" { print $2; exit }')"
